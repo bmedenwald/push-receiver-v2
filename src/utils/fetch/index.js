@@ -31,8 +31,8 @@ async function retry(retryCount = 0, ...args) {
 
     if (!result.ok && result.status >= 500 && retryCount < MAX_RETRIES) {
       const timeout = Math.min(retryCount * RETRY_STEP, MAX_RETRY_TIMEOUT);
-      console.error(`Request failed with status ${result.status}: ${result.statusText}`);
-      console.error(`Retrying in ${timeout} seconds`);
+      console.info(`Request failed with status ${result.status}: ${result.statusText}`);
+      console.info(`Retrying in ${timeout} seconds`);
       await waitFor(timeout * 1000);
       return retry(retryCount + 1, ...args);
     }
@@ -44,8 +44,8 @@ async function retry(retryCount = 0, ...args) {
     }
 
     const timeout = Math.min(retryCount * RETRY_STEP, MAX_RETRY_TIMEOUT);
-    console.error(`Request failed : ${e.message}`);
-    console.error(`Retrying in ${timeout} seconds`);
+    console.info(`Request failed : ${e.message}`);
+    console.info(`Retrying in ${timeout} seconds`);
     await waitFor(timeout * 1000);
     const result = await retry(retryCount + 1, ...args);
     return result;
