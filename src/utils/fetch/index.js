@@ -6,7 +6,7 @@ const MAX_RETRY_TIMEOUT = 15;
 // Step in seconds
 const RETRY_STEP = 5;
 // Maximum number of retries
-const MAX_RETRIES = 5;
+const MAX_RETRIES = 2;
 
 module.exports = { fetchWithRetry, fetch };
 
